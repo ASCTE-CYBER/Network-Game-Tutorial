@@ -1,7 +1,6 @@
 import pygame
 from network import Network
 
-
 class Player():
     width = height = 50
 
@@ -29,7 +28,6 @@ class Player():
         else:
             self.y += self.velocity
 
-
 class Game:
 
     def __init__(self, w, h):
@@ -38,6 +36,7 @@ class Game:
         self.height = h
         self.player = Player(50, 50)
         self.player2 = Player(100,100)
+        self.player3 = Player(150,150)
         self.canvas = Canvas(self.width, self.height, "Testing...")
 
     def run(self):
@@ -73,11 +72,13 @@ class Game:
 
             # Send Network Stuff
             self.player2.x, self.player2.y = self.parse_data(self.send_data())
+            #self.player3.x, self.player3.y = self.parse_data(self.send_data())
 
             # Update Canvas
             self.canvas.draw_background()
             self.player.draw(self.canvas.get_canvas())
             self.player2.draw(self.canvas.get_canvas())
+            self.player3.draw(self.canvas.get_canvas())
             self.canvas.update()
 
         pygame.quit()
@@ -98,7 +99,6 @@ class Game:
             return int(d[0]), int(d[1])
         except:
             return 0,0
-
 
 class Canvas:
 
